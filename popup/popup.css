@@ -1,0 +1,12 @@
+html {
+  width: 200px;
+  height: 200px;
+  background: lightblue;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
