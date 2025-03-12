@@ -3,8 +3,25 @@
   "description": "Webpage Aware Generative AI",
   "version": "0.1",
   "manifest_version": 3,
+
   "action": {
     "default_popup": "popup/popup.html",
     "default_icon": "images/temp-logo.png"
+  },
+
+  "permissions": [ "scripting" ],
+
+  "background": {
+    "service_worker": "scripts/service-worker.js"
+  },
+
+  "commands": {
+    "Temp-Script": {
+      "suggested_key": { 
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "Inject a script on the page"
+    }
   }
 }
