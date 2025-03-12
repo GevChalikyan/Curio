@@ -1,12 +1,35 @@
 html {
   width: 200px;
-  height: 200px;
-  background: lightblue;
+  height: 250px;
+  background: lightgray;
 }
 
-.center {
+img {
+  margin: 0px 0px;
+}
+
+.social {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
+
+.body {
+  height: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 200px;
+}
+
+.footer {
+  height: 50px;
+  width: 200px;
+}
+.footer p {
+  position: absolute; 
+  left: 0px; 
+  bottom: 0px;
+  margin: 0px 0px;
 }
