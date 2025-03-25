@@ -12,7 +12,7 @@
   "permissions": [ "scripting" ],
 
   "background": {
-    "service_worker": "scripts/service-worker.js"
+    "service_worker": "scripts/background.js"
   },
 
   "commands": {
