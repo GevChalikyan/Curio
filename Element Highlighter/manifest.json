@@ -1,0 +1,15 @@
+{
+    "manifest_version": 3,
+    "name": "Element Highlighter",
+    "version": "1.0",
+    "description": "Highlights elements when you hover over them.",
+    "permissions": [],
+    "host_permissions": ["<all_urls>"],
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"],
+        "css": ["style.css"]
+      }
+    ]
+  }
