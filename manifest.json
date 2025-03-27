@@ -15,6 +15,14 @@
     "service_worker": "scripts/background.js"
   },
 
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["scripts/highlighter.js"],
+      "css": ["scripts/highlighter.css"]
+    }
+  ],
+
   "commands": {
     "Element_Selection_State": {
       "suggested_key": { 
