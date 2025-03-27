@@ -16,7 +16,7 @@
   },
 
   "commands": {
-    "Temp-Script": {
+    "Element_Selection_State": {
       "suggested_key": { 
         "default": "Ctrl+Shift+Y",
         "mac": "Command+Shift+Y"
