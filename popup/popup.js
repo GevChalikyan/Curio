@@ -1,1 +1,1 @@
-console.log("This is a popup still!")
+console.log("Popup Page Opened")
