@@ -24,12 +24,12 @@
   ],
 
   "commands": {
-    "Element_Selection_State": {
+    "toggle_element_selection_state": {
       "suggested_key": { 
         "default": "Ctrl+Shift+Y",
         "mac": "Command+Shift+Y"
       },
-      "description": "Inject a script on the page"
+      "description": "Enable/Disable Element Selection State"
     }
   }
 }
