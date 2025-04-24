@@ -2,46 +2,67 @@
 chrome.runtime.onInstalled.addListener(() => {
     chrome.contextMenus.create({
         id: "logElementType",
-        title: "Log Element Type and Content",
-        contexts: ["all"] // Show this option on right-click anywhere
+        title: "Send to OpenRouter",
+        contexts: ["all"]
     });
 });
 
-// Listen for right-click menu clicks
 chrome.contextMenus.onClicked.addListener((info, tab) => {
     if (info.menuItemId === "logElementType") {
-        // Inject script into the page to log the element type and contents
         chrome.scripting.executeScript({
             target: { tabId: tab.id },
-            function: logElementDetails
+            func: () => {
+                async function sendToOpenRouter(message) {
+                    message = "Expand on this: " + message;
+                    console.log(message);
+                    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": "Bearer API_Key_Goes_Here"  // Put your API key here
+                        },
+                        body: JSON.stringify({
+                            model: "deepseek/deepseek-chat-v3-0324:free",
+                            messages: [{ role: "user", content: message }]
+                        })
+                    });
+
+                    if (!response.ok) {
+                        console.error(`Error: ${response.status} ${response.statusText}`);
+                        return;
+                    }
+
+                    const data = await response.json();
+                    if (data.choices && data.choices[0] && data.choices[0].message) {
+                        console.log("OpenRouter response:", data.choices[0].message.content);
+                    } else {
+                        console.log("Unexpected response format.");
+                    }
+                }
+
+                if (window.lastRightClickedElement) {
+                    const element = window.lastRightClickedElement;
+                    const elementType = element.tagName;
+
+                    let textOnlyContent = '';
+                    if (elementType === "IMG") {
+                        textOnlyContent = `[Image: ${element.alt || element.src}]`;
+                    } else if (elementType === "INPUT" || elementType === "TEXTAREA") {
+                        textOnlyContent = element.value || '';
+                    } else if (elementType === "A") {
+                        textOnlyContent = element.textContent || element.href;
+                    } else {
+                        textOnlyContent = element.textContent || '';
+                    }
+
+                    textOnlyContent = textOnlyContent.trim();
+                    console.log("Element text content:", textOnlyContent);
+                    sendToOpenRouter(textOnlyContent);
+                } else {
+                    console.log("No element recorded.");
+                }
+            }
         });
     }
 });
 
-// Function to log element type and content
-function logElementDetails() {
-    if (window.lastRightClickedElement) {
-        const element = window.lastRightClickedElement;
-        const elementType = element.tagName;
-
-        let elementContent = '';
-        
-        // Check if it's a text-based element
-        if (elementType === "IMG") {
-            elementContent = `Image source: ${element.src}`;
-        } else if (elementType === "INPUT" || elementType === "TEXTAREA") {
-            elementContent = `Input value: ${element.value}`;
-        } else if (elementType === "A") {
-            elementContent = `Link href: ${element.href}`;
-        } else {
-            // For other elements, use innerText or innerHTML
-            elementContent = element.innerText || element.innerHTML;
-        }
-
-        // Log element type and content
-        console.log("Right-clicked element type:", elementType);
-        console.log("Element content:", elementContent);
-    } else {
-        console.log("No element recorded.");
-    }
-}
