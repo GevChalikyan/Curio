@@ -34,12 +34,20 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
 
                     const data = await response.json();
                     if (data.choices && data.choices[0] && data.choices[0].message) {
-                        console.log("OpenRouter response:", data.choices[0].message.content);
+                        const outputArea = document.getElementById('openrouter-output-area');
+                        if (outputArea) {
+                            // Append the OpenRouter response to the output area
+                            outputArea.textContent = data.choices[0].message.content;
+                        } else {
+                            console.error('Output area not found!');
+                        }
                     } else {
                         console.log("Unexpected response format.");
                     }
                 }
-
+                
+                createPopup();
+                
                 if (window.lastRightClickedElement) {
                     const element = window.lastRightClickedElement;
                     const elementType = element.tagName;
