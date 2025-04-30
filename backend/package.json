@@ -1,0 +1,19 @@
+{
+  "name": "curio_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Hello, World!\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GevChalikyan/Curio.git"
+  },
+  "author": "Gev Chalikyan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GevChalikyan/Curio/issues"
+  },
+  "homepage": "https://github.com/GevChalikyan/Curio#readme"
+}
