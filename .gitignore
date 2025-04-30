@@ -1,2 +1,5 @@
 # VS Code
 .history/
+
+# Node
+*node_modules/
