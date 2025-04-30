@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // --- Middleware ---
 
@@ -30,7 +30,6 @@ app.post('/echo', (req, res) => {
   });
 });
 
-// --- Start Server ---
 app.listen(PORT, () => {
-  console.log(`🚀 Server listening on http://localhost:${PORT}`);
+  console.log(`🚀 Server listening on port ${PORT}`);
 });
