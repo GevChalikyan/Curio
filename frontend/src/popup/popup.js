@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://curio-backend-d13s.onrender.com"
+const API_BASE_URL = "http://localhost:3000"
 
 console.log("Popup Page Opened")
 
