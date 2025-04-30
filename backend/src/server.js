@@ -10,7 +10,11 @@ const PORT = process.env.PORT || 3000;
 // Allow CORS from any origin (for development).
 // In production, you can lock this down to your extension's origin:
 //  { origin: 'chrome-extension://<your-extension-id>' }
-app.use(cors());
+const allowed = ['chrome-extension://akcenmkkdbgobaaoplbgpmbijfpahapc'];
+app.use(cors({
+  origin: (origin, cb) => cb(null, allowed.includes(origin)),
+  methods: ['GET','POST']
+}));
 
 // Parse incoming JSON bodies
 app.use(express.json());
