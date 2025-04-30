@@ -4,6 +4,10 @@
   "version": "0.1",
   "manifest_version": 3,
 
+  "host_permissions": [
+    "https://curio-backend-d13s.onrender.com/*"
+  ],
+
   "action": {
     "default_popup": "popup/popup.html",
     "default_icon": "images/temp-logo.png"
