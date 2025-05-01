@@ -1,5 +1,5 @@
 // server.js
-const initializeDatabase = require('./config/init-db');
+const initializeDatabase = require('./db/init-db');
 
 const express = require('express');
 const cors = require('cors');
