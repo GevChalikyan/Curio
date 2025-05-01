@@ -11,14 +11,14 @@ function element_selection_listener(event) {
 }
 
 function toggle_element_selection() {
-  if (isHighlighterActive) {
+  if (is_element_selection_active) {
     document.addEventListener("mouseover", element_selection_listener);
     console.log("Element Selection Enabled");
   } else {
     document.removeEventListener("mouseover", element_selection_listener);
     console.log("Element Selection Disabled");
   }
-  isHighlighterActive = !isHighlighterActive;
+  is_element_selection_active = !is_element_selection_active;
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
