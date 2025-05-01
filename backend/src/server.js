@@ -1,9 +1,10 @@
 // server.js
+const initializeDatabase = require('./config/init-db');
+
 const express = require('express');
 const cors = require('cors');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 // --- Middleware ---
 
@@ -30,6 +31,16 @@ app.post('/echo', (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server listening on port ${PORT}`);
-});
+(async () => {
+  try {
+    await initializeDatabase();
+
+    const PORT = process.env.PORT || 3001;
+    app.listen(PORT, () => {
+      console.log(`🚀 Server listening on port ${PORT}`);
+    });
+  } catch (err) {
+    console.error('Startup failed: ', err);
+    process.exit(1);
+  }
+})();
