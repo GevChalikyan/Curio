@@ -46,7 +46,7 @@ router.post('/login', async (req, res) => {
 
 
 
-    res.json({
+    res.status(200).json({
       user: {
         id: user.id,
         username: user.username
