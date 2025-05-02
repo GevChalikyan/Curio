@@ -1,5 +1,6 @@
 // server.js
 const initializeDatabase = require('./db/init-db');
+const createDefaultUser = require('./utils/default-user');
 
 const express = require('express');
 const cors = require('cors');
@@ -34,6 +35,7 @@ app.post('/echo', (req, res) => {
 (async () => {
   try {
     await initializeDatabase();
+    await createDefaultUser();
 
     const PORT = process.env.PORT || 3001;
     app.listen(PORT, () => {
