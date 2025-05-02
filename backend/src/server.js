@@ -2,10 +2,13 @@
 const initializeDatabase = require('./db/init-db');
 const createDefaultUser = require('./utils/default-user');
 
+
+
 const express = require('express');
 const cors = require('cors');
 
 const app = express();
+const authRouter = require('./utils/auth');
 
 // --- Middleware ---
 
@@ -16,6 +19,11 @@ app.use(cors());
 
 // Parse incoming JSON bodies
 app.use(express.json());
+
+
+// --- Endpoints ---
+app.use('/api/auth', authRouter)
+
 
 // --- Test Endpoints ---
 
@@ -31,6 +39,8 @@ app.post('/echo', (req, res) => {
     timestamp: Date.now()
   });
 });
+
+
 
 (async () => {
   try {
