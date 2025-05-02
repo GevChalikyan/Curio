@@ -67,5 +67,22 @@ router.post('/login', async (req, res) => {
 
 
 
+function validateToken(token) {
+  try {
+    const payload = jwt.verify(token, process.env.JWT_SECRET);
+    return { valid: true, expired: false, payload };
+  } catch(error) {
+    const expired = error.name === 'TokenExpiredError';
+    return { valid: false, expired: expired, payload: null };
+  }
+}
 
-module.exports = router;
+
+
+
+
+
+module.exports = {
+  router,
+  validateToken
+};
