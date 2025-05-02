@@ -8,7 +8,7 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
-const authRouter = require('./utils/auth');
+const { router: authRouter, validateToken } = require('./utils/auth');
 
 // --- Middleware ---
 
@@ -23,6 +23,10 @@ app.use(express.json());
 
 // --- Endpoints ---
 app.use('/api/auth', authRouter)
+app.get('/api/protected', validateToken, (req, res) => {
+  res.json({ message: 'Hello ${req.user.username}!'})
+});
+
 
 
 // --- Test Endpoints ---
