@@ -24,7 +24,7 @@ app.use(express.json());
 // --- Endpoints ---
 app.use('/api/auth', authRouter)
 app.get('/api/protected', validateToken, (req, res) => {
-  res.json({ message: 'Hello ${req.user.username}!'})
+  res.json({ message: `Hello ${req.user.username}!`})
 });
 
 
