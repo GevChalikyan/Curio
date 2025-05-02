@@ -4,9 +4,22 @@ const bcrypt = require("bcrypt");
 const router = require('express').Router();
 
 // Login Endpoint
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
   
-  console.log('Login Accessed');
+  // console.log('Login Accessed');
+
+  // try {
+
+  //   const { username, password } = req.body
+
+  //   const result = await query(
+
+  //   );
+
+  // } catch(error) {
+  //   console.log("Error At Login Endpoint: ", error);
+  //   res.status(500).json({ error: 'Internal server error' });
+  // }
   
   res.status(200).json({ message: 'ok' });
 
