@@ -8,6 +8,7 @@
   position: fixed;
   top: 20px;
   right: 20px;
+  z-index: 99999;
   background: darkgrey;
   color: white;
   padding: 10px 16px;
