@@ -9,8 +9,8 @@
   ],
 
   "action": {
-    "default_popup": "popup/popup.html",
-    "default_icon": "images/Curio-logo.png"
+    "default_popup": "src/popup/popup.html",
+    "default_icon": "src/images/Curio-logo.png"
   },
 
   "permissions": [ 
@@ -21,14 +21,14 @@
   ],
 
   "background": {
-    "service_worker": "scripts/background.js"
+    "service_worker": "src/scripts/background.js"
   },
 
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["scripts/highlighter/highlighter.js"],
-      "css": ["scripts/highlighter/highlighter.css"]
+      "js": ["src/scripts/highlighter/highlighter.js"],
+      "css": ["src/scripts/highlighter/highlighter.css"]
     }
   ],
 
