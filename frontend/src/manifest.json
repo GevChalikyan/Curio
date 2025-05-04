@@ -10,7 +10,7 @@
 
   "action": {
     "default_popup": "popup/popup.html",
-    "default_icon": "images/temp-logo.png"
+    "default_icon": "images/Curio-logo.png"
   },
 
   "permissions": [ "tabs", "scripting" ],
