@@ -8,7 +8,8 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
-const { router: authRouter, validateToken } = require('./utils/auth');
+const authRouter = require('./utils/auth');
+const validateToken = require('./middleware/validate-token');
 
 // --- Middleware ---
 
@@ -33,6 +34,10 @@ app.get('/api/protected', validateToken, (req, res) => {
 
 // Simple GET to confirm server is alive
 app.get('/ping', (req, res) => {
+  res.json({ message: 'pong' });
+});
+
+app.get('/protected-ping', validateToken, (req, res) => {
   res.json({ message: 'pong' });
 });
 
