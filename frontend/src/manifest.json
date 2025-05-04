@@ -13,7 +13,12 @@
     "default_icon": "images/Curio-logo.png"
   },
 
-  "permissions": [ "tabs", "scripting" ],
+  "permissions": [ 
+    "activeTab",
+    "commands",
+    "tabs", 
+    "scripting" 
+  ],
 
   "background": {
     "service_worker": "scripts/background.js"
