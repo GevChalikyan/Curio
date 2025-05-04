@@ -1,5 +1,6 @@
 # VS Code
 .history/
+.DS_store
 
 # Node
 *node_modules/
