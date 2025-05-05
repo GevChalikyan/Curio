@@ -37,7 +37,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
             
               try {
                 //Change The URL to somewhere you can actually POST
-                const res = await fetch('https://curio-backend-d13s.onrender.com/api/chat', {
+                const res = await fetch('https://api-connection-pdoi.onrender.com', {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json'

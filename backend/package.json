@@ -4,8 +4,10 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Hello, World!\" && exit 1"
+    "start": "node src/server.js",
+    "build": "echo \"Nothing to build\""    
   },
+  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GevChalikyan/Curio.git"
