@@ -1,6 +1,5 @@
 is_element_selection_active = false;
 
-function element_selection_listener(event) {
   function rgbToHsl(r, g, b) {
     r /= 255; g /= 255; b /= 255;
     const max = Math.max(r, g, b), min = Math.min(r, g, b);
@@ -46,7 +45,6 @@ function element_selection_listener(event) {
         target.style.borderRadius = "";
         target.removeEventListener("mouseout", cleanup);
     }, { once: true });
-}
 }
 
 function toggle_element_selection() {
