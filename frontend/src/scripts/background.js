@@ -12,7 +12,6 @@ chrome.commands.onCommand.addListener((command) => {
           .catch(err => {
             console.warn("Toggle failed:", err.message);
           });
-        console.log("TEST");
       }
     });
   }
