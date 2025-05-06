@@ -6,6 +6,9 @@ const welcomeMessage = document.getElementById('welcomeMessage');
 const loginContainer = document.getElementById('loginForm');
 const usernameDisplay = document.getElementById('usernameDisplay');
 const logoutButton = document.getElementById('logoutButton');
+const errorMessage = document.createElement('div');
+errorMessage.className = 'error-message';
+loginContainer.appendChild(errorMessage);
 
 // Check if user is already logged in
 function checkAuthStatus() {
@@ -22,6 +25,8 @@ function checkAuthStatus() {
 function showLoginForm() {
   loginContainer.style.display = 'block';
   welcomeMessage.style.display = 'none';
+  errorMessage.style.display = 'none';
+  document.getElementById('loginFormElement').reset();
 }
 
 // Show welcome message
@@ -31,6 +36,13 @@ function showWelcomeMessage(username) {
   usernameDisplay.textContent = username;
 }
 
+// Set loading state
+function setLoading(isLoading) {
+  const submitButton = document.querySelector('.login-button');
+  submitButton.disabled = isLoading;
+  submitButton.textContent = isLoading ? 'Signing in...' : 'Sign In';
+}
+
 // Handle login form submission
 loginForm.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -38,8 +50,17 @@ loginForm.addEventListener('submit', async (e) => {
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
 
+  // Basic validation
+  if (!username || !password) {
+    errorMessage.textContent = 'Please enter both username and password';
+    errorMessage.style.display = 'block';
+    return;
+  }
+
+  setLoading(true);
+  errorMessage.style.display = 'none';
+
   try {
-    console.log('Attempting login with:', { username });
     const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
       method: 'POST',
       headers: {
@@ -49,7 +70,6 @@ loginForm.addEventListener('submit', async (e) => {
     });
 
     const responseData = await response.json();
-    console.log('Login response:', responseData);
 
     if (!response.ok) {
       throw new Error(responseData.error || 'Login failed');
@@ -65,7 +85,10 @@ loginForm.addEventListener('submit', async (e) => {
 
   } catch (error) {
     console.error('Login error:', error);
-    alert(`Login failed: ${error.message}`);
+    errorMessage.textContent = error.message;
+    errorMessage.style.display = 'block';
+  } finally {
+    setLoading(false);
   }
 });
 
