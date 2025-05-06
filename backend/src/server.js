@@ -1,4 +1,5 @@
 // server.js
+require('dotenv').config();
 const initializeDatabase = require('./db/init-db');
 const createDefaultUser = require('./utils/default-user');
 
@@ -6,6 +7,7 @@ const createDefaultUser = require('./utils/default-user');
 
 const express = require('express');
 const cors = require('cors');
+const fetch = require('node-fetch'); // needed for OpenRouter call
 
 const app = express();
 const authRouter = require('./utils/auth');
@@ -28,7 +30,31 @@ app.get('/api/protected', validateToken, (req, res) => {
   res.json({ message: `Hello ${req.user.username}!`})
 });
 
+app.post('/api/chat', async (req, res) => {
+  const { message } = req.body;
 
+  try {
+    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: 'deepseek-chat',
+        messages: [{ role: 'user', content: message }]
+      })
+    });
+
+    const data = await response.json();
+    const reply = data.choices?.[0]?.message?.content || 'No reply received';
+
+    res.json({ reply });
+  } catch (error) {
+    console.error('OpenRouter error:', error);
+    res.status(500).json({ error: 'OpenRouter API request failed' });
+  }
+});
 
 // --- Test Endpoints ---
 
