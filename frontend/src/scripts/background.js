@@ -5,7 +5,13 @@ chrome.commands.onCommand.addListener((command) => {
     console.log("Element Selection State Toggled");
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
       if(tabs[0]?.id) {
-        chrome.tabs.sendMessage(tabs[0].id, { action: "toggle_element_selection" });
+        chrome.tabs.sendMessage(tabs[0].id, { action: "toggle_element_selection" })
+          .then(response => {
+            console.log("Response:", response);
+          })
+          .catch(err => {
+            console.warn("Toggle failed:", err.message);
+          });
         console.log("TEST");
       }
     });
