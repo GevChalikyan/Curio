@@ -42,12 +42,12 @@ app.post('/api/chat', async (req, res) => {
         'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`
       },
       body: JSON.stringify({
-        model: 'deepseek-chat',
+        model: 'deepseek-chat-v3-0324:free',
         messages: [{ role: 'user', content: message }]
       })
     });
 
-    const text = await response.text(); // Get raw text
+    const text = await response.text();
     console.log("OpenRouter raw response:", text);
 
     let data;
@@ -65,7 +65,6 @@ app.post('/api/chat', async (req, res) => {
     res.status(500).json({ error: 'OpenRouter API request failed' });
   }
 });
-
 
 // --- Test Endpoints ---
 
