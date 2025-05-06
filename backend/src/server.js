@@ -31,9 +31,6 @@ app.get('/api/protected', validateToken, (req, res) => {
 app.post('/api/chat', async (req, res) => {
   const { message } = req.body;
 
-  console.log("Message received:", message);
-  console.log("API key present:", process.env.API_KEY ? 'YES' : 'NO');
-
   try {
     const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
@@ -43,7 +40,7 @@ app.post('/api/chat', async (req, res) => {
         'Authorization': `Bearer ${process.env.API_KEY}`
       },
       body: JSON.stringify({
-        model: 'deepseek-chat',
+        model: 'deepseek/deepseek-chat-v3-0324:free',
         messages: [{ role: 'user', content: message }]
       })
     });
