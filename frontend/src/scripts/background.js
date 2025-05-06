@@ -25,42 +25,6 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     chrome.scripting.executeScript({
       target: { tabId: tab.id },
       func: () => {
-        async function sendMessage(textOnlyContent) {
-          const inputBox = document.getElementById('openrouter-input-area');
-          const outputBox = document.getElementById('openrouter-output-area');
-          const message = textOnlyContent;
-
-          if (!message) return;
-
-          outputBox.innerHTML += `<div style="margin-bottom: 10px;"><strong>You:</strong> ${message}</div>`;
-          inputBox.value = '';
-          outputBox.innerHTML += `<div><em>Thinking...</em></div>`;
-
-          try {
-            const res = await fetch('https://api-connection-pdoi.onrender.com/api/chat', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({ message })
-            });
-
-            const text = await res.text();
-
-            try {
-              const data = JSON.parse(text);
-              const reply = data.reply || 'Error: No reply received';
-              outputBox.innerHTML += `<div style="margin-bottom: 10px;"><strong>Bot:</strong> ${reply}</div>`;
-            } catch (jsonError) {
-              outputBox.innerHTML += `<div style="color: red;"><strong>Server Error Response:</strong><br><pre>${text}</pre></div>`;
-            }
-
-            outputBox.scrollTop = outputBox.scrollHeight;
-          } catch (err) {
-            outputBox.innerHTML += `<div style="color: red;"><strong>Network Error:</strong> ${err.message}</div>`;
-          }
-        }
-
         createPopup();
 
         if (window.lastRightClickedElement) {
@@ -80,7 +44,8 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
 
           textOnlyContent = textOnlyContent.trim();
           console.log("Element text content:", textOnlyContent);
-          sendMessage(textOnlyContent);
+
+          window.postMessage({ type: "SEND_MESSAGE", text: textOnlyContent }, "*");
         } else {
           console.log("No element recorded.");
         }
@@ -88,3 +53,4 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     });
   }
 });
+

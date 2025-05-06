@@ -107,6 +107,17 @@ function createPopup() {
     popup.remove();
   });
 
+  inputArea.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      const message = inputArea.value.trim();
+      if (message) {
+        // Send the message to the content script using postMessage
+        window.postMessage({ type: "SEND_MESSAGE", text: message }, "*");
+      }
+    }
+  });
+
   popup.appendChild(inputArea);
   popup.appendChild(outputArea);
   popup.appendChild(closeButton);
