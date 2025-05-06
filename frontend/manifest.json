@@ -17,7 +17,8 @@
     "activeTab",
     "commands",
     "tabs", 
-    "scripting" 
+    "scripting",
+    "storage"
   ],
 
   "background": {
