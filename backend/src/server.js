@@ -3,8 +3,6 @@ require('dotenv').config();
 const initializeDatabase = require('./db/init-db');
 const createDefaultUser = require('./utils/default-user');
 
-
-
 const express = require('express');
 const cors = require('cors');
 const fetch = require('node-fetch'); // needed for OpenRouter call
@@ -33,13 +31,16 @@ app.get('/api/protected', validateToken, (req, res) => {
 app.post('/api/chat', async (req, res) => {
   const { message } = req.body;
 
+  console.log("Message received:", message);
+  console.log("API key present:", process.env.OPENROUTER_API_KEY ? 'YES' : 'NO');
+
   try {
     const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`
+        'Authorization': `Bearer ${process.env.API_KEY}`
       },
       body: JSON.stringify({
         model: 'deepseek-chat-v3-0324:free',
