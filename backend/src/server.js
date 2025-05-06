@@ -38,6 +38,7 @@ app.post('/api/chat', async (req, res) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
         'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`
       },
       body: JSON.stringify({
@@ -46,15 +47,25 @@ app.post('/api/chat', async (req, res) => {
       })
     });
 
-    const data = await response.json();
-    const reply = data.choices?.[0]?.message?.content || 'No reply received';
+    const text = await response.text(); // Get raw text
+    console.log("OpenRouter raw response:", text);
 
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch (err) {
+      return res.status(500).json({ error: 'Invalid JSON from OpenRouter', raw: text });
+    }
+
+    const reply = data.choices?.[0]?.message?.content || 'No reply received';
     res.json({ reply });
+
   } catch (error) {
     console.error('OpenRouter error:', error);
     res.status(500).json({ error: 'OpenRouter API request failed' });
   }
 });
+
 
 // --- Test Endpoints ---
 
