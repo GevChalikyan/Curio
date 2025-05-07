@@ -111,9 +111,10 @@ function createPopup() {
     if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault();
       const message = inputArea.value.trim();
+      const history = outputArea.textContent;
       if (message) {
         // Send the message to the content script using postMessage
-        window.postMessage({ type: "SEND_MESSAGE", text: message }, "*");
+        window.postMessage({ type: "SEND_MESSAGE", text: message, history: history }, "*");
       }
     }
   });

@@ -1,7 +1,13 @@
-function sendMessage(textOnlyContent) {
+function sendMessage(textOnlyContent, chatHistory) {
   const inputBox = document.getElementById('openrouter-input-area');
   const outputBox = document.getElementById('openrouter-output-area');
-  const message = "Expand on this but try to keep it to a paragraph: " + textOnlyContent;
+  console.log(chatHistory);
+  if (chatHistory){
+    message = chatHistory + "\n" + textOnlyContent + "\n(keep it to a paragraph)";
+    console.log(message);
+  }else{
+    message = "Expand on this but try to keep it to a paragraph: " + textOnlyContent;
+  }
 
   if (!message) return;
 
@@ -31,8 +37,8 @@ function sendMessage(textOnlyContent) {
 }
 
 window.addEventListener("message", (event) => {
-    if (event.source !== window) return;
-    if (event.data.type === "SEND_MESSAGE") {
-      sendMessage(event.data.text);
-    }
-  });
+  if (event.source !== window) return;
+  if (event.data.type === "SEND_MESSAGE") {
+    sendMessage(event.data.text, event.data.history);
+  }
+});

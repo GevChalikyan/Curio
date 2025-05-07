@@ -15,7 +15,7 @@ chrome.commands.onCommand.addListener((command) => {
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     id: "logElementType",
-    title: "Send to OpenRouter",
+    title: "Send to Curio",
     contexts: ["all"]
   });
 });
