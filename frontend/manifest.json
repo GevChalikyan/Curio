@@ -28,7 +28,7 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["src/scripts/highlighter/highlighter.js", "popup/popup_2.js", "scripts/BackendCall.js"],
+      "js": ["src/scripts/highlighter/highlighter.js", "src/popup/popup_2.js", "src/scripts/BackendCall.js"],
       "css": ["src/scripts/highlighter/highlighter.css"]
     }
   ],

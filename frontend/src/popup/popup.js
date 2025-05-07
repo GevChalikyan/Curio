@@ -15,7 +15,6 @@ const WELCOME_PAGE = `
   <i>
     <b>
        <div>
-        YURRRRRRR
         <div class="switch-container">
           <label class="switch">
             <input type="checkbox" id="highlight-toggle">
