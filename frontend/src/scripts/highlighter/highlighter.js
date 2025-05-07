@@ -65,7 +65,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     toggle_element_selection();
     sendResponse({ status: is_element_selection_active ? "Enabled" : "Disabled" });
   }
-})
+});
 
 function curio_status(message) {
   const existing = document.getElementById("curio-popup");
