@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://curio-backend-d13s.onrender.com"
+const API_BASE_URL = "https://api-connection-pdoi.onrender.com"
 
 const LOGIN_PAGE = `
 <form>
