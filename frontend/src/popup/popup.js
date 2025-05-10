@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://curio-backend-d13s.onrender.com"
+const API_BASE_URL = "https://api-connection-pdoi.onrender.com"
 
 // DOM Elements
 const loginForm = document.getElementById('loginFormElement');
