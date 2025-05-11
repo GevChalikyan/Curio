@@ -1,3 +1,5 @@
+console.log("[Curio] Highlighter.js present");
+
 is_element_selection_active = false;
 
 function rgbToHsl(r, g, b) {
