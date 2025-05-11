@@ -49,14 +49,27 @@ function element_selection_listener(event) {
     }, { once: true });
 }
 
+function element_click_listener(event) {
+
+  console.log("Click detected");
+
+  toggle_element_selection();
+
+  const textOnlyContent = event.target.textContent.trim();
+  // if you have some history, replace `null` with your variable
+  sendMessage(textOnlyContent, null);
+}
+
 function toggle_element_selection() {
   if (!is_element_selection_active) {
     document.addEventListener("mouseover", element_selection_listener);
-    console.log("Element Selection Enabled");
+    document.addEventListener("click", element_click_listener);
+    console.log("Element Selection & Click Enabled");
     curio_status("Curio Activated");
   } else {
     document.removeEventListener("mouseover", element_selection_listener);
-    console.log("Element Selection Disabled");
+    document.removeEventListener("click", element_click_listener);
+    console.log("Element Selection & Click Disabled");
     curio_status("Curio Deactivated");
   }
   is_element_selection_active = !is_element_selection_active;
