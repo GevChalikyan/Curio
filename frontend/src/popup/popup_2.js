@@ -1,3 +1,5 @@
+console.log("[Curio] popup_2.js present");
+
 document.addEventListener("contextmenu", (event) => {
   window.lastRightClickedElement = event.target;
   window.lastRightClickedTagName = event.target.tagName;
