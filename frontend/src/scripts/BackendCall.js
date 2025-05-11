@@ -4,10 +4,10 @@ function sendMessage(textOnlyContent, chatHistory) {
   console.log(chatHistory);
   if (chatHistory){
     message = chatHistory + "\n" + textOnlyContent + "\n(keep it to a paragraph)";
-    console.log(message);
   }else{
     message = "Expand on this but try to keep it to a paragraph: " + textOnlyContent;
   }
+  console.log(message);
 
   if (!message) return;
 
