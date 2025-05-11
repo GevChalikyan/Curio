@@ -1,7 +1,12 @@
 async function sendMessage(textOnlyContent, chatHistory) {
+
   createPopup();
+
   const inputBox = document.getElementById('openrouter-input-area');
   const outputBox = document.getElementById('openrouter-output-area');
+  const thinkingMessage = document.createElement('div');
+  thinkingMessage.innerHTML = '<em>Thinking…</em>';
+
   console.log(chatHistory);
   if (chatHistory){
     message = chatHistory + "\n" + textOnlyContent + "\n(keep it to a paragraph)";
@@ -14,7 +19,7 @@ async function sendMessage(textOnlyContent, chatHistory) {
 
   outputBox.innerHTML += `<div style="margin-bottom: 10px;"><strong>You:</strong> ${textOnlyContent}</div>`;
   inputBox.value = '';
-  outputBox.innerHTML += `<div><em>Thinking...</em></div>`;
+  outputBox.appendChild(thinkingMessage);
 
   await fetch('https://api-connection-pdoi.onrender.com/api/chat', {
     method: 'POST',
@@ -25,6 +30,7 @@ async function sendMessage(textOnlyContent, chatHistory) {
   .then(text => {
     try {
       const data = JSON.parse(text);
+      thinkingMessage.remove();
       const reply = data.reply || 'Error: No reply received';
       outputBox.innerHTML += `<div style="margin-bottom: 10px;"><strong>Bot:</strong> ${reply}</div>`;
     } catch (jsonError) {
