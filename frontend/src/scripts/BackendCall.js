@@ -1,4 +1,5 @@
-function sendMessage(textOnlyContent, chatHistory) {
+async function sendMessage(textOnlyContent, chatHistory) {
+  createPopup();
   const inputBox = document.getElementById('openrouter-input-area');
   const outputBox = document.getElementById('openrouter-output-area');
   console.log(chatHistory);
@@ -15,7 +16,7 @@ function sendMessage(textOnlyContent, chatHistory) {
   inputBox.value = '';
   outputBox.innerHTML += `<div><em>Thinking...</em></div>`;
 
-  fetch('https://api-connection-pdoi.onrender.com/api/chat', {
+  await fetch('https://api-connection-pdoi.onrender.com/api/chat', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ message })
