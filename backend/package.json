@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Hello, World!\" && exit 1"
+    "test": "echo \"Hello, World!\" && exit 1",
+    "start": "node src/server.js"
   },
   "repository": {
     "type": "git",
