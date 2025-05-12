@@ -56,7 +56,7 @@ function element_click_listener(event) {
   toggle_element_selection();
 
   const textOnlyContent = event.target.textContent.trim();
-  // if you have some history, replace `null` with your variable
+  
   sendMessage(textOnlyContent, null);
 }
 
