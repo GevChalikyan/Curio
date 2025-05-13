@@ -28,7 +28,7 @@ app.get('/api/protected', validateToken, (req, res) => {
   res.json({ message: `Hello ${req.user.username}!`})
 });
 
-app.post('/api/chat', async (req, res) => {
+app.post('/api/chat', validateToken, async (req, res) => {
   const { message } = req.body;
 
   try {
