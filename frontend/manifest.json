@@ -5,7 +5,7 @@
   "manifest_version": 3,
 
   "host_permissions": [
-    "https://curio-backend-d13s.onrender.com/*", "<all_urls>"
+    "https://curio-backend-d13s.onrender.com/*"
   ],
 
   "action": {
@@ -16,20 +16,19 @@
   "permissions": [ 
     "activeTab",
     "commands",
-    "contextMenus",
     "tabs", 
     "scripting",
     "storage"
   ],
 
   "background": {
-    "service_worker": "src/background.js"
+    "service_worker": "src/scripts/background.js"
   },
 
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["src/scripts/highlighter/highlighter.js", "src/popup/popup_2.js", "src/scripts/BackendCall.js"],
+      "js": ["src/scripts/highlighter/highlighter.js"],
       "css": ["src/scripts/highlighter/highlighter.css"]
     }
   ],

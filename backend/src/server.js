@@ -1,11 +1,11 @@
 // server.js
-require('dotenv').config();
 const initializeDatabase = require('./db/init-db');
 const createDefaultUser = require('./utils/default-user');
 
+
+
 const express = require('express');
 const cors = require('cors');
-const fetch = require('node-fetch'); // needed for OpenRouter call
 
 const app = express();
 const authRouter = require('./utils/auth');
@@ -28,41 +28,7 @@ app.get('/api/protected', validateToken, (req, res) => {
   res.json({ message: `Hello ${req.user.username}!`})
 });
 
-app.post('/api/chat', async (req, res) => {
-  const { message } = req.body;
 
-  try {
-    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${process.env.API_KEY}`
-      },
-      body: JSON.stringify({
-        model: 'deepseek/deepseek-chat-v3-0324:free',
-        messages: [{ role: 'user', content: message }]
-      })
-    });
-
-    const text = await response.text();
-    console.log("OpenRouter raw response:", text);
-
-    let data;
-    try {
-      data = JSON.parse(text);
-    } catch (err) {
-      return res.status(500).json({ error: 'Invalid JSON from OpenRouter', raw: text });
-    }
-
-    const reply = data.choices?.[0]?.message?.content || 'No reply received';
-    res.json({ reply });
-
-  } catch (error) {
-    console.error('OpenRouter error:', error);
-    res.status(500).json({ error: 'OpenRouter API request failed' });
-  }
-});
 
 // --- Test Endpoints ---
 

@@ -200,61 +200,31 @@ input[type="password"]:focus {
 }
 
 .footer p {
-  position: absolute; 
-  left: 0px; 
-  bottom: 0px;
-  margin: 0px 0px;
+  margin: 0;
+  font-size: 12px;
 }
 
-.switch-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: sans-serif;
-  font-size: 14px;
+.error-message {
+  color: var(--error-color);
+  background-color: #fde8e8;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 10px;
+  font-size: 12px;
+  text-align: center;
+  display: none;
 }
 
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 40px;
-  height: 20px;
+.social {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
 }
 
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+.social:hover {
+  transform: scale(1.1);
 }
 
-.slider {
-  position: absolute;
-  cursor: pointer;
-  background-color: darkgray;
-  border-radius: 20px;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  transition: 0.4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 16px;
-  width: 16px;
-  left: 2px;
-  bottom: 2px;
-  background-color: white;
-  border-radius: 50%;
-  transition: 0.4s;
-}
-
-input:checked + .slider {
-  background-color: lightgreen;
-}
-
-input:checked + .slider:before {
-  transform: translateX(20px);
+.welcome-container {
+  display: none;
 }

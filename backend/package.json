@@ -4,10 +4,9 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "start": "node src/server.js",
-    "build": "echo \"No build step required\""    
+    "test": "echo \"Hello, World!\" && exit 1",
+    "start": "node src/server.js"
   },
-  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GevChalikyan/Curio.git"
@@ -26,7 +25,6 @@
     "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.2",
     "path": "^0.12.7",
-    "pg": "^8.15.6",
-    "node-fetch": "^2.6.7"
+    "pg": "^8.15.6"
   }
 }
