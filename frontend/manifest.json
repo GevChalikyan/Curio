@@ -18,7 +18,8 @@
     "commands",
     "contextMenus",
     "tabs", 
-    "scripting" 
+    "scripting",
+    "storage"
   ],
 
   "background": {

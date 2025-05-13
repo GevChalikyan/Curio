@@ -21,9 +21,14 @@ async function sendMessage(textOnlyContent, chatHistory) {
   inputBox.value = '';
   outputBox.appendChild(thinkingMessage);
 
+  const { jwtToken: token } = await chrome.storage.local.get('jwtToken');
+
   await fetch('https://api-connection-pdoi.onrender.com/api/chat', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
     body: JSON.stringify({ message })
   })
   .then(res => res.text())
