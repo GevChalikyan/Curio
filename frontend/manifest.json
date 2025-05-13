@@ -1,0 +1,46 @@
+{
+  "name": "Curio",
+  "description": "Webpage Aware Generative AI",
+  "version": "0.1",
+  "manifest_version": 3,
+
+  "host_permissions": [
+    "https://curio-backend-d13s.onrender.com/*", "<all_urls>"
+  ],
+
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_icon": "src/images/Curio-logo.png"
+  },
+
+  "permissions": [ 
+    "activeTab",
+    "commands",
+    "contextMenus",
+    "tabs", 
+    "scripting",
+    "storage"
+  ],
+
+  "background": {
+    "service_worker": "src/background.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/scripts/highlighter/highlighter.js", "src/popup/popup_2.js", "src/scripts/BackendCall.js"],
+      "css": ["src/scripts/highlighter/highlighter.css"]
+    }
+  ],
+
+  "commands": {
+    "toggle_element_selection_state": {
+      "suggested_key": { 
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "Enable/Disable Element Selection State"
+    }
+  }
+}

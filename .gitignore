@@ -1,0 +1,8 @@
+# VS Code
+.history/
+.DS_store
+.vscode/settings.json
+
+# Node
+*node_modules/
+package-lock.json

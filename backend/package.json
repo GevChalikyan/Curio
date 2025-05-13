@@ -1,0 +1,32 @@
+{
+  "name": "curio_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "build": "echo \"No build step required\""    
+  },
+  
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GevChalikyan/Curio.git"
+  },
+  "author": "Gev Chalikyan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GevChalikyan/Curio/issues"
+  },
+  "homepage": "https://github.com/GevChalikyan/Curio#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "fs": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.2",
+    "path": "^0.12.7",
+    "pg": "^8.15.6",
+    "node-fetch": "^2.6.7"
+  }
+}
