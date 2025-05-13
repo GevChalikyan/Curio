@@ -22,3 +22,4 @@ Once element selection is activated, you will notice your mouse cursor highlight
 When you have found one that you would like some more insight on, simple left click and Curio will automatically expand on the highlighted text block.
 
 # Demo
+https://youtu.be/9-N-TOA1Cys
