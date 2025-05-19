@@ -1,5 +1,5 @@
 const { query } = require("../db/db");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 async function createDefaultUser() {
   try {
